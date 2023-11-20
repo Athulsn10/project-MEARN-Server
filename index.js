@@ -7,11 +7,13 @@ const cors = require('cors')
 const pfServer = express()
 // import router from router.js
 const router = require('./Routes/router')
+const appMiddleware = require('./Middleware/appMiddleware')
 require('./DB/connection')
 
 
 pfServer.use(cors()) // using cors in server
 pfServer.use(express.json()) // parse json into the application
+pfServer.use(appMiddleware)
 pfServer.use(router) // import router from router.js
 
 const PORT = 4000 || process.env.PORT // set port number
